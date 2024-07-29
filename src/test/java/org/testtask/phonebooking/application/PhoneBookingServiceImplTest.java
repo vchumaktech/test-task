@@ -1,6 +1,7 @@
 package org.testtask.phonebooking.application;
 
 import org.junit.jupiter.api.*;
+import org.testtask.phonebooking.application.services.PhoneBookingServiceImpl;
 import org.testtask.phonebooking.domain.entities.Booking;
 import org.testtask.phonebooking.domain.entities.Phone;
 import org.testtask.phonebooking.domain.entities.User;

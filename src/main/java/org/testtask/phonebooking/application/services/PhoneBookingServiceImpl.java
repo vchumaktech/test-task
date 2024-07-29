@@ -1,4 +1,4 @@
-package org.testtask.phonebooking.application;
+package org.testtask.phonebooking.application.services;
 
 import org.springframework.stereotype.Component;
 import org.testtask.phonebooking.domain.entities.Booking;
