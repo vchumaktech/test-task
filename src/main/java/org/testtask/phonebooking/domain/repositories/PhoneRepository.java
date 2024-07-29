@@ -4,7 +4,6 @@ import org.testtask.phonebooking.domain.entities.Phone;
 import org.testtask.phonebooking.domain.valueobjects.PhoneModel;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,7 +21,7 @@ public interface PhoneRepository {
 
     /**
      * Retrieves all phones of specific model
-     * @param model - supported phone model. see {@link org.testtask.phonebooking.domain.valueobjects.PhoneModel}
+     * @param model - supported phone model. see {@link PhoneModel}
      * @return - collection of phone with current model
      */
     Collection<Phone> getPhoneByModel(PhoneModel model);

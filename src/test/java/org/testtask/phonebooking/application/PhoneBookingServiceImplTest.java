@@ -1,7 +1,6 @@
-package org.testtask.phonebooking;
+package org.testtask.phonebooking.application;
 
 import org.junit.jupiter.api.*;
-import org.testtask.phonebooking.application.PhoneBookingServiceImpl;
 import org.testtask.phonebooking.domain.entities.Booking;
 import org.testtask.phonebooking.domain.entities.Phone;
 import org.testtask.phonebooking.domain.entities.User;
@@ -119,6 +118,16 @@ public class PhoneBookingServiceImplTest {
         public void shouldntBeBookedWhenModelUnknown() {
             assertThrows(NoSuchPhoneException.class, () -> systemUnderTest.bookPhone("fake iphone", user2.id()));
         }
+
+        @Test
+        @DisplayName("verify notification event sending when phone booked")
+        public void shouldNotifyWhenPhoneBooked() {
+            systemUnderTest.bookPhone(nokia_3310.id(), user1.id());
+
+            final BaseEvent lastEvent = notificationService.getLastEvent();
+            assertNotNull(lastEvent, "notification service should have an event");
+            Assertions.assertEquals(lastEvent.getType(), EventType.PHONE_BOOKED, "wrong notification event type");
+        }
     }
 
     @Nested
@@ -143,7 +152,7 @@ public class PhoneBookingServiceImplTest {
 
             final BaseEvent lastEvent = notificationService.getLastEvent();
             assertNotNull(lastEvent, "notification service should have an event");
-            assertEquals(lastEvent.getType(), EventType.PHONE_RETURNED, "wrong notification event type");
+            Assertions.assertEquals(lastEvent.getType(), EventType.PHONE_RETURNED, "wrong notification event type");
         }
 
         @Test

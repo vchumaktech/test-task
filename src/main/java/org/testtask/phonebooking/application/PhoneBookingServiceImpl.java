@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.testtask.phonebooking.domain.entities.Booking;
 import org.testtask.phonebooking.domain.entities.Phone;
 import org.testtask.phonebooking.domain.entities.User;
+import org.testtask.phonebooking.domain.events.PhoneBookedEvent;
 import org.testtask.phonebooking.domain.events.PhoneReturnedEvent;
 import org.testtask.phonebooking.domain.exceptions.AlreadyBookedException;
 import org.testtask.phonebooking.domain.exceptions.NoSuchBookingException;
@@ -64,6 +65,9 @@ public class PhoneBookingServiceImpl implements PhoneBookingService {
                 user, phone,
                 new Date(), true);
 
+        // notify phone booked
+        notificationService.sendEvent(new PhoneBookedEvent(booking.phone().id()));
+
         return bookingRepository.saveOrUpdate(booking);
     }
 
@@ -88,8 +92,13 @@ public class PhoneBookingServiceImpl implements PhoneBookingService {
                 .stream().filter(phone -> !bookedPhones.contains(phone))
                 .findFirst();
 
-        return bookPhone(firstAvailablePhone
+        final Booking booking =  bookPhone(firstAvailablePhone
                 .map(Phone::id).get(), userId);
+
+        // notify phone booked
+        notificationService.sendEvent(new PhoneBookedEvent(booking.phone().id()));
+
+        return booking;
     }
 
     /**

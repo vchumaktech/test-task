@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /**
  * Mock implementation of
- * {@link org.testtask.phonebooking.domain.repositories.UserRepository}
+ * {@link UserRepository}
  * May be replaced with real
  *
  * {@inheritDoc}

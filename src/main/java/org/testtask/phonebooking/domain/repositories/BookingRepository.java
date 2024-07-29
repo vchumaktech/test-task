@@ -1,8 +1,6 @@
 package org.testtask.phonebooking.domain.repositories;
 
 import org.testtask.phonebooking.domain.entities.Booking;
-import org.testtask.phonebooking.domain.entities.Phone;
-import org.testtask.phonebooking.domain.entities.User;
 import org.testtask.phonebooking.domain.valueobjects.PhoneModel;
 
 import java.util.Collection;

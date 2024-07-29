@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 /**
  * Mock implementation of
- * {@link org.testtask.phonebooking.domain.repositories.BookingRepository}
+ * {@link BookingRepository}
  * May be replaced with real
  *
  * {@inheritDoc}
